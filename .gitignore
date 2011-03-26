@@ -1,0 +1,7 @@
+# ignore pyc
+*.pyc
+
+# private files
+settings_local.py
+tokens.py
+truck.cursor
