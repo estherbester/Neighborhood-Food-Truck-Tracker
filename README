@@ -1,0 +1,35 @@
+INSTRUCTIONS
+============
+You need to create an empty, readable/writeable file called "truck.cursor" in the same directory as truck.py. The function will record the highest cursor number reached when updating the Twitter List Member stream, to reduce the number of API calls each time the function is run.
+
+
+REQUIREMENTS
+============
+OAUTH MODULES TO ACCESS THE TWITTER API:
+twitter-oauth
+oauth2
+
+OTHER MODULES:
+rfc822
+urllib, urllib2
+django-tagging
+django.core.cache
+
+SAMPLE TEMPLATES:
+Jquery 1.4.4+
+Rikloma's Jquery Quicksearch https://github.com/riklomas/quicksearch
+
+
+
+ABOUT
+=====
+Neighborhood Food Truck Tracker
+me @ esthernam.com
+2011
+
+TODO LIST
+=========
+- allow you to add a food truck to your Twitter list via Django Admin
+- speed up retrieval of truck tweets.
+- iPhone style sheet
+- Celery integration?
