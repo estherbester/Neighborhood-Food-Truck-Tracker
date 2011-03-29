@@ -1,0 +1,27 @@
+{% extends 'fbase.html' %}
+
+{% block extra_js %}
+{% endblock extra_js %}
+
+{% block content %}
+
+<h3>Unfiltered Food Truck Search</h3>
+<br />
+<p class="small">Enter any term (try a neighborhood name, street, or landmark) into the search box to get an instant filtered list of tweets containing the keyword you specify.</p>
+<div id="form">
+	<form method="get" action="#">
+
+	<fieldset>
+		<input id="search" type="text" name="search" value="">
+	</fieldset>
+
+	</form>
+
+</div>
+
+{% include 'foodtruck/twits.html' %}
+
+{% endblock content %}
+
+
+

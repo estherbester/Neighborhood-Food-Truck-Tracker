@@ -1,6 +1,23 @@
 INSTRUCTIONS
 ============
-You need to create an empty, readable/writeable file called "truck.cursor" in the same directory as truck.py. The function will record the highest cursor number reached when updating the Twitter List Member stream, to reduce the number of API calls each time the function is run.
+You must create a file called "tokens.py" and add these variables with their corresponding values:
+
+'''
+OAUTH_TOKEN= 'your_oauth_token, obtained from developer.twitter.com'
+OAUTH_TOKEN_SECRET= 'your_oauth_token_secret'
+
+CONSUMER_KEY='whatever_your_consumer_key_is'
+CONSUMER_SECRET='ditto_for_secret'
+
+username = 'list_owner's_twitter_username'
+list_name = 'name_of_twitter_list'
+
+LIST_URL = "http://api.twitter.com/1/%s/lists/%s/statuses.json?per_page=190" % (username,  list_name)
+LIST_MEMBERS_URL = 'http://api.twitter.com/1/%s/%s/members.json' % (username, list_name)
+'''
+
+You should also create an empty file called "truck.cursor" in the same directory as truck.py. The function will write into the file the highest cursor number reached when updating the Twitter List Member stream, to reduce the number of API calls each time the function is run.
+
 
 
 REQUIREMENTS

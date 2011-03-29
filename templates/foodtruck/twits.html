@@ -1,0 +1,11 @@
+{% load foodtruck_tags %}
+<div id="posts">
+{% for t in tweets %}
+	<div class="tweet">
+	<a href="http://twitter.com/{{t.name}}" rel="nofollow"><img src="{{ t.pic_url }}" /></a>
+	<strong><a href="http://twitter.com/{{ t.name }}" rel="nofollow">{{t.name}}</a></strong>
+	<span class="text">{{ t.text|twitterfy|urlize }}</span> 
+	<span class="time"><a href="{{ t.url }}" rel="nofollow">{{t.timestamp|date:"P l M d"}}</a></span>
+	</div>
+{% endfor%}
+</div>

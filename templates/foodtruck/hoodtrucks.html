@@ -1,0 +1,33 @@
+{% extends 'fbase.html' %}
+
+{% block extra_js %}
+{% endblock extra_js %}
+
+{% block content %}
+
+<h3>Food Trucks currently in {{ hood|capfirst }}</h3>
+<br />
+<p class="small">The following is a list of food trucks believed to be in the neighborhood, based on rough filtering by these tags:</p>
+
+<ul class="hood_tags">
+	{% for t in tags %}
+	<li>{{ t.name }}</li>
+	{% endfor %}
+</ul>
+
+
+{% include 'foodtruck/twits.html' %}
+<p>Enter a term (e.g. neighborhood, street, landmark) to filter the above tweets even further</p>
+
+<div id="form">
+ <form method="get" action="#">
+	
+	<fieldset>
+	Search: <input id="search" type="text" name="search" value="">
+	</fieldset>
+ </form>
+</div>
+
+
+{% endblock content %}
+

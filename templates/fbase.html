@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head><title>LA Neighborhood Food Truck Tracker</title>
+<link rel="apple-touch-icon" href="{{MEDIA_URL}}/apple-touch-icon.png" /><link rel="shortcut icon" type="image/x-icon" href="{{MEDIA_URL}}/favicon.ico">
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/foodtruck/css/style.css" />
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% load cache %}
+{% cache 1200 js_delete %}
+<script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAAabV1J2AUF2mupjmL0kRSkRRgTXNMF2HJPPrXmPQ0GzpvbbRi7RT9tFROFb9IQ9K6dovK4HmlHzEUnQ" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("#trucks").hide();
+    // Slide
+    $(".expand_all").click(function() {
+        $('#trucks').toggleClass("collapsed").toggleClass("expanded");
+        $("#trucks").slideToggle("medium");
+        $(".expand_all").toggle();
+    	});  
+});
+
+</script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/foodtruck/js/jquery.quicksearch.js"></script>
+
+<!-- thanks riklomas! https://github.com/riklomas/quicksearch -->
+	<script type="text/javascript" charset="utf-8">
+	
+	$(function () {			
+	var qs = $('input#search').quicksearch('#posts .tweet');	
+	qs.cache();
+	});
+	</script>
+
+    {% block extra_js %}
+    
+	{% endblock extra_js %}
+{% endcache %}
+</head>
+
+<body>
+<div id="container">
+	<div id="header">
+		<a name="top" href="/"><h1> </h1></a>
+	</div>
+
+	<div>
+		{% block page-header %}
+            <div id="nav">
+			Neighborhoods: {% for h in hoods %}<span class="hood"><a href="{% url foodtruck.views.hood_truck hood=h.id %}">{{h.name|capfirst}}</a></span>{% endfor %}
+			| &nbsp; <a href="{% url foodtruck.views.food_truck %}">Unfiltered List</a> 
+			<img src="{{MEDIA_URL }}foodtruck/trucky1.png" style="float:right;margin-right:20px;"/> 
+			</div>
+		{% endblock page-header %}
+		
+		{% block content %}
+		
+		{% endblock content %}
+
+	</div>
+
+{%  block sidebar %}
+
+	<div id="sidebar">
+		<h4>Tracked Trucks</h4>	
+		<a class="expand_all">Show all trucks ({{ trucks|length }})</a>
+		<ul id="trucks" class="collapsed">
+			<li><a class="expand_all" style="display:none;" >[Hide trucks]</a> <br /></li>
+			{% for t in trucks %}
+			<li><a href="{{ t.truck_url}}" rel="nofollow" title="{{t.description}}">{{ t.real_name|capfirst }}</a></li>
+			{% endfor%}
+			<li><a class="expand_all" style="display:none;"  href="#top" ><br />[Hide list of trucks]</a></li>
+		</ul>
+		<br />
+	</div>
+
+{% endblock sidebar %}	
+<br />	
+{% block footer %}
+<div id="footer">
+	<strong>ABOUT</strong> 
+	<p>The LA Neighborhood Food Truck Tracker is designed to help you food trucks that might be in your neighborhood by scanning their tweets for certain keywords. There are currently 200+ gourmet food trucks roaming our fair city, and chances are there's one near you that you'll love! </p>
+<br />	
+	<p>&#169; 2011 Esther Nam. If you have any questions or know of other LA-area food trucks not on this list, email me@esthernam.com</p>
+</div>
+{% endblock footer %}
+
+</div>
+</body>
